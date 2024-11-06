@@ -1,20 +1,33 @@
-import React from 'react';
-import { Code2, Mountain, Camera, BookOpen, Github, ExternalLink } from 'lucide-react';
+import { Code2, Mountain, Github, ExternalLink, Mail, Check, Clipboard } from 'lucide-react';
 import { Footer } from './Footer';
+import { useState } from 'react';
 
 export function AboutMe() {
+  const [showEmail, setShowEmail] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("jayminwest@gmail.com");
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy email:", err);
+    }
+  };
+
   return (
-    <div className="py-24 px-4">
+    <div className="py-24 px-4 about-section">
       <div className="max-w-4xl mx-auto space-y-24">
         {/* Hero Section */}
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="flex-1">
             <h2 className="text-4xl font-bold text-white mb-6">My Overview:</h2>
             <p className="text-slate-300 leading-relaxed">
-            I’m Jaymin West — an engineer, developer, and outdoor professional with a passion for creating impactful projects. 
-            From building NCAA basketball prediction models and a kendama tutorial platforms to guiding backpacking trips, I love combining tech and 
-            community in meaningful ways. When I’m not coding or analyzing, you’ll find me exploring the outdoors, 
-            reading something good, or playing kendama.
+              I'm Jaymin West — a full-stack developer and outdoor enthusiast with a Computer Science degree from Gonzaga University. 
+              I'm passionate about combining technology with community impact through projects like Teach Niche and TandemFlow. 
+              When I'm not coding, you'll find me ski touring, backpacking, playing kendama, or exploring house music. 
+              I believe in digital minimalism and creating efficient, community-driven solutions.
             </p>  
           </div>
           <div className="flex-1">
@@ -34,11 +47,15 @@ export function AboutMe() {
               <h3 className="text-xl font-semibold text-white">Technical Skills</h3>
             </div>
             <ul className="space-y-2 text-slate-300">
-              <li>• Full-stack Development</li>
-              <li>• React & Node.js Expertise</li>
-              <li>• Machine Learning</li>
-              <li>• Large Language Models</li>
-              <li>• Data Analysis</li>
+              <li>• Full-stack Development (React.js, Node.js)</li>
+              <li>• Database Solutions (Supabase, SQL)</li>
+              <li>• AI & Automation (Python, LLMs, Make.com)</li>
+              <li>• Workflow Automation & Integration</li>
+              <li>• Payment Integration (Stripe)</li>
+              <li>• Data Analysis & Predictive Modeling</li>
+              <li>• UI/UX Design & Development</li>
+              <li>• Version Control (Git)</li>
+              <li>• API Development & Integration</li>
             </ul>
           </div>
           
@@ -53,13 +70,14 @@ export function AboutMe() {
               className="rounded-lg mb-4 hover:scale-105 transition-transform duration-500"
             />
             <p className="text-slate-300">
-              Whenever I can, I love to explore the world and spend time outdoors. 
+              From leading backcountry trips at Wilderness Adventures to teaching skiing at Schweitzer, 
+              I'm passionate about outdoor education and adventure. My dream trip? Ski touring in Norway!
             </p>
           </div>
         </div>
 
         {/* Projects */}
-        <div>
+        <div id="featured-projects">
           <h2 className="text-3xl font-bold text-white mb-8">Featured Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-black/40 backdrop-blur-sm rounded-lg overflow-hidden">
@@ -71,9 +89,8 @@ export function AboutMe() {
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-white mb-2">Teach Niche</h3>
                 <p className="text-slate-300 mb-4">
-                  A platform designed to empower the kendama community by providing a space 
-                  where players can share knowledge, teach skills, and support one another. 
-                  Built with React, Supabase, and Stripe integration.
+                  An open-source, community-driven platform for kendama players to create, sell, and purchase tutorials. 
+                  Built with React.js, Supabase, and Stripe integration. Launching around the North American Kendama Open (NAKO).
                 </p>
                 <div className="flex gap-4">
                   <a 
@@ -125,6 +142,49 @@ export function AboutMe() {
               </div>
             </div>
           </div>
+          
+          {/* New GitHub button */}
+          <div className="flex justify-center mt-12">
+            <a
+              href="https://github.com/jayminwest"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-black/30 hover:bg-black/40 
+                       text-white border border-white/10 hover:border-white/20 rounded-lg 
+                       transition-all duration-200"
+              aria-label="View more projects on GitHub"
+            >
+              <Github className="w-5 h-5" />
+              <span>View More on GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center py-12 border-t border-white/10">
+          <h2 className="text-3xl font-bold text-white mb-6">Let's Connect</h2>
+          <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
+            Whether you're interested in collaboration, have a project in mind, or just want to chat about tech and outdoor adventures, I'd love to hear from you.
+          </p>
+          <button
+            onClick={showEmail ? handleCopyEmail : () => setShowEmail(true)}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-black/30 hover:bg-black/40 
+                     text-white border border-white/10 rounded-lg transition-all"
+          >
+            <Mail className="w-4 h-4" />
+            {showEmail ? (
+              <>
+                <span>jayminwest@gmail.com</span>
+                {copied ? (
+                  <Check className="w-4 h-4" />
+                ) : (
+                  <Clipboard className="w-4 h-4" />
+                )}
+              </>
+            ) : (
+              <span>Contact Me</span>
+            )}
+          </button>
         </div>
       </div>
       <Footer />

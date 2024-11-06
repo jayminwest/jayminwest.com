@@ -10,22 +10,17 @@ const backgrounds = [
 ];
 
 interface Props {
-  currentTheme?: string;
   children: React.ReactNode;
 }
 
-export const AnimatedBackground: React.FC<Props> = (
-  { currentTheme, children },
-) => {
+export const AnimatedBackground: React.FC<Props> = ({ children }) => {
   const [currentBg, setCurrentBg] = useState(backgrounds[0]);
   const [nextBg, setNextBg] = useState(backgrounds[1]);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    if (currentTheme) return; // Don't animate if there's a current theme
-
-    const transitionDuration = 5000; // 5 seconds for fade
-    const holdDuration = 8000; // 8 seconds between fades
+    const transitionDuration = 60000; // 60 seconds for fade
+    const holdDuration = 10000; // 10 seconds between fades
 
     const animate = () => {
       setIsTransitioning(true);
@@ -48,7 +43,7 @@ export const AnimatedBackground: React.FC<Props> = (
     animate();
 
     return () => clearInterval(interval);
-  }, [currentTheme, nextBg]);
+  }, [nextBg]);
 
   return (
     <div className="relative w-full h-full">

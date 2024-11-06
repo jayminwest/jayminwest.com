@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "lucide-react": "^0.344.0",
-    "openai": "^4.68.4",
+    "openai": "^4.71.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
