@@ -1,0 +1,4 @@
+baseURL = 'https://jayminwest.com'
+languageCode = 'en-us'
+title = 'jayminwest.com'
+theme = "hugo-brewm"

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on jayminwest.com</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent Posts in Posts on jayminwest.com</description>
+    <generator>Hugo 0.142.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 31 Jan 2025 13:38:13 -0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Test Post</title>
+      <link>http://localhost:1313/post/test-post/</link>
+      <pubDate>Fri, 31 Jan 2025 13:36:43 -0800</pubDate>
+      <guid>http://localhost:1313/post/test-post/</guid>
+      <description></description>
+      
+    </item>
+  </channel>
+</rss>
